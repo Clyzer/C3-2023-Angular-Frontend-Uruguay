@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
 import { LastMovementsCustomerService } from '../last-movements-customer/last-movements-customer.service';
@@ -9,12 +9,14 @@ Chart.register(...registerables);
   templateUrl: './monthly-expenses.component.html',
   styleUrls: ['./monthly-expenses.component.scss']
 })
-export class MonthlyExpensesComponent {
+export class MonthlyExpensesComponent implements OnInit {
 
   protected lastMovementsFinal: LastMovementsModel[] = [];
   public chart!: Chart<"doughnut", number[], string>;
 
-  constructor(protected lastMovementsCustomerService: LastMovementsCustomerService){
+  constructor(protected lastMovementsCustomerService: LastMovementsCustomerService){}
+
+  ngOnInit(){
     this.lastMovementsCustomerService.lastMovementsFinalEmitter.subscribe({
       next: (data: LastMovementsModel[]) => {
         if (JSON.stringify(this.lastMovementsFinal) !== JSON.stringify(data)) {
