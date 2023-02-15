@@ -49,7 +49,7 @@ export class LastMovementsCustomerService implements OnDestroy {
         complete: () => {
           let current: TransferListModel[] = [];
           this.customerAccountsTransfer.forEach((value, index) => {
-            this.api.getTransferHistory(value.id).subscribe({
+            this.api.getTransfersHistory(value.id).subscribe({
               next: (data) => {
                 current.push({ account: value, transfers: data });
               },
@@ -129,7 +129,6 @@ export class LastMovementsCustomerService implements OnDestroy {
         return new Date(a.dateTime).getTime() - new Date(b.dateTime).getTime();
       });
       this.lastMovements.reverse();
-      this.lastMovements = this.lastMovements.slice(0,8);
       this.lastMovementsFinalEmitter.next(this.lastMovements);
     }
   }

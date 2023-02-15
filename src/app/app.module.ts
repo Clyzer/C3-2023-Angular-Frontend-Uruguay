@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { LoginModule } from './login/login.module';
 import { MaterialModule } from './material/material.module';
-import { HomeComponent } from './home/home.component';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,9 +18,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomeComponent,
-    //ExerciseComponent,
+    AppComponent
   ],
   imports: [
     LoginModule,
@@ -40,8 +37,7 @@ import { provideAuth,getAuth } from '@angular/fire/auth';
   ],
   bootstrap: [AppComponent],
   exports: [
-    AppComponent,
-    HomeComponent
+    AppComponent
   ]
 })
 export class AppModule { }

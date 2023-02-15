@@ -110,7 +110,7 @@ export class AppService {
     );
   }
 
-  getTransferHistory(id: string): Observable<TransferResponseModel[]> {
+  getTransfersHistory(id: string): Observable<TransferResponseModel[]> {
     const body = { id: id };
     const httpOptions = {
       headers: this.httpheaders

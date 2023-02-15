@@ -20,8 +20,8 @@ export class LastMovementsCustomerComponent implements OnInit {
   ngOnInit(): void {
     this.lastMovementsCustomerService.lastMovementsFinalEmitter.subscribe({
       next: (data: LastMovementsModel[]) => {
-        if (JSON.stringify(this.lastMovementsFinal) !== JSON.stringify(data)) {
-          this.lastMovementsFinal = data;
+        if (JSON.stringify(this.lastMovementsFinal) !== JSON.stringify(data.slice(0,8))) {
+          this.lastMovementsFinal = data.slice(0,8);;
         }
       }
     })
