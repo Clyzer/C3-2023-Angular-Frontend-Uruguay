@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Chart, registerables } from 'chart.js';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
 import { LastMovementsCustomerService } from '../last-movements-customer/last-movements-customer.service';
@@ -9,7 +9,7 @@ Chart.register(...registerables);
   templateUrl: './monthly-expenses.component.html',
   styleUrls: ['./monthly-expenses.component.scss']
 })
-export class MonthlyExpensesComponent implements OnInit {
+export class MonthlyExpensesComponent implements OnDestroy, OnInit {
 
   protected lastMovementsFinal: LastMovementsModel[] = [];
   public chart!: Chart<"doughnut", number[], string>;
@@ -28,6 +28,10 @@ export class MonthlyExpensesComponent implements OnInit {
         }
       }
     })
+  }
+
+  ngOnDestroy(){
+    this.chart.destroy()
   }
 
   createChart(){
