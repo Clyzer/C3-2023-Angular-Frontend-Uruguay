@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LastMovementsCustomerService } from './last-movements-customer.service';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
-import { asyncScheduler } from 'rxjs';
+import { BehaviorSubject, asyncScheduler } from 'rxjs';
 import { AuthGuard } from 'src/app/login/guards/auth.guard';
 import { TransferListModel } from 'src/app/interfaces/transfer.list.interface';
 import { DepositListModel } from 'src/app/interfaces/deposit.list.interface';
@@ -16,6 +16,8 @@ export class LastMovementsCustomerComponent implements OnInit {
   protected lastMovementsTransfers: TransferListModel[] = [];
   protected lastMovementsDeposits: DepositListModel[] = [];
   protected lastMovements: LastMovementsModel[] = [];
+  protected lastMovementsFinal: LastMovementsModel[] = [];
+  protected lastMovementsFinalEmitter: BehaviorSubject<LastMovementsModel[]> = new BehaviorSubject<LastMovementsModel[]>(this.lastMovementsFinal);
 
   private update: boolean = false;
 
@@ -36,6 +38,13 @@ export class LastMovementsCustomerComponent implements OnInit {
           this.update = true;
         }}
     });
+    this.lastMovementsFinalEmitter.subscribe({
+      next: (data: LastMovementsModel[]) => {
+        if (JSON.stringify(this.lastMovementsFinal) !== JSON.stringify(data)) {
+          this.lastMovementsFinal = data;
+        }
+      }
+    })
     this.lastMovementsCustomerService.updateLastMovementsCustomerTable();
     this.updateMovements();
   }
@@ -68,6 +77,7 @@ export class LastMovementsCustomerComponent implements OnInit {
       });
       this.lastMovements.reverse();
       this.lastMovements = this.lastMovements.slice(0,8);
+      this.lastMovementsFinalEmitter.next(this.lastMovements);
     }
   }
 }

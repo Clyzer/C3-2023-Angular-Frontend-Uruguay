@@ -10,23 +10,23 @@
   <tbody>
     <tr class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
       <td class="py-3"><i class="fa fa-dollar"></i> USD</td>
-      <td class="py-3">37,80</td>
-      <td class="py-3">40,30</td>
+      <td class="py-3">{{((this.banktax * this.usd) / 100).toFixed(2)}}</td>
+      <td class="py-3">{{this.usd}}</td>
     </tr>
     <tr class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
       <td class="py-3"><i class="fa fa-eur"></i> EUR</td>
-      <td class="py-3">39,36</td>
-      <td class="py-3">44,23</td>
+      <td class="py-3">{{((this.banktax * this.eur) / 100).toFixed(2)}}</td>
+      <td class="py-3">{{this.eur}}</td>
     </tr>
     <tr class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
       <td class="py-3"><b>R<i class="fa fa-dollar"></i></b> Real</td>
-      <td class="py-3">7,15</td>
-      <td class="py-3">8,95</td>
+      <td class="py-3">{{((this.banktax * this.real) / 100).toFixed(2)}}</td>
+      <td class="py-3">{{this.real}}</td>
     </tr>
     <tr class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
       <td class="py-3"><i class="fa fa-gbp"></i> Libra</td>
-      <td class="py-3">44,47</td>
-      <td class="py-3">50,43</td>
+      <td class="py-3">{{((this.banktax * this.punds) / 100).toFixed(2)}}</td>
+      <td class="py-3">{{this.punds}}</td>
     </tr>
   </tbody>
 </table>
