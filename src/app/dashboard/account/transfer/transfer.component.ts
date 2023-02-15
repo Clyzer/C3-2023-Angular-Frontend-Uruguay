@@ -28,7 +28,7 @@ export class TransferComponent {
   transferForm = this.formBuilder.group({
     accounts: new FormControl("0"),
     accountto: new FormControl("0"),
-    cedula: new FormControl(),
+    documento: new FormControl(),
     monto: new FormControl(),
     reason: new FormControl("0")
   });
@@ -43,9 +43,9 @@ export class TransferComponent {
     this.depositService.updateUserAccountsTable();
 
     this.AccountsListOfUserEmitter.subscribe((data: AccountModel[]) => { this.AccountsListOfUser = data; })
-    this.transferForm.get("cedula")?.valueChanges.subscribe(cedula => {
-      if (cedula !== null && cedula.toString().length === 8 && this.transferForm.controls.cedula.valid){
-        this.api.getAllAccountsByDocument(cedula).subscribe({
+    this.transferForm.get("documento")?.valueChanges.subscribe(documento => {
+      if (documento !== null && documento.toString().length >= 8 && this.transferForm.controls.documento.valid){
+        this.api.getAllAccountsByDocument(documento).subscribe({
           next: (data) => {
             if (this.AccountsListOfUser !== data) {
               this.AccountsListOfUser = data;

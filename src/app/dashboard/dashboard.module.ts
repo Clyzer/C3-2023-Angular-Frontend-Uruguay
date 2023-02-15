@@ -10,6 +10,7 @@ import { MonthlyExpensesComponent } from './view/lists/monthly-expenses/monthly-
 import { ProfileComponent } from './customer/profile/profile.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { RouterModule } from '@angular/router';
+import { LastMovementsCustomerService } from './view/lists/last-movements-customer/last-movements-customer.service';
 
 @NgModule({
     declarations: [
@@ -27,6 +28,9 @@ import { RouterModule } from '@angular/router';
         CurrencyComponent,
         MonthlyExpensesComponent,
         ProfileComponent
+    ],
+    providers: [
+      LastMovementsCustomerService
     ],
     imports: [
         CommonModule,

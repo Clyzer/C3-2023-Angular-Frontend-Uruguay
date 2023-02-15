@@ -99,4 +99,26 @@ export class AppService {
     );
   }
 
+  getDepositsHistory(id: string): Observable<DepositResponseModel[]> {
+    const body = { id: id };
+    const httpOptions = {
+      headers: this.httpheaders
+    };
+    return this.http.post<DepositResponseModel[]>(
+      this.baseurl + "/deposit/get-history", body,
+      httpOptions
+    );
+  }
+
+  getTransferHistory(id: string): Observable<TransferResponseModel[]> {
+    const body = { id: id };
+    const httpOptions = {
+      headers: this.httpheaders
+    };
+    return this.http.post<TransferResponseModel[]>(
+      this.baseurl + "/transfer/get-history", body,
+      httpOptions
+    );
+  }
+
 }

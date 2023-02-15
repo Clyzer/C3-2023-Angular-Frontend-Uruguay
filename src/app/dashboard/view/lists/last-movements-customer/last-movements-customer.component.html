@@ -8,10 +8,10 @@
     </tr>
   </thead>
   <tbody>
-    <tr class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
-      <td class="py-3">Dato ready!</td>
-      <td class="py-3">Dato ready!</td>
-      <td class="py-3">Dato ready!</td>
+    <tr *ngFor="let movement of lastMovements; index as i" class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
+      <td class="py-3">{{movement.type}}</td>
+      <td class="py-3">{{movement.outcome.customer.fullName}}</td>
+      <td class="py-3">${{movement.balance}}</td>
     </tr>
   </tbody>
 </table>

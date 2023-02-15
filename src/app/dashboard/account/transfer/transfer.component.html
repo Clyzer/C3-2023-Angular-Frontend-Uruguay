@@ -12,21 +12,21 @@
                   <!-- <h2 class="text-center text-2xl font-bold tracking-wide text-gray-800">Iniciar sesión</h2> -->
                   <form class="my-8 text-sm" [formGroup]="transferForm" (ngSubmit)="this.onSubmit()">
                     <div class="flex flex-col my-4" *ngIf="!this.userData.get('currentAccount')">
-                      <label for="accountto" class="text-gray-700">Cuenta a depositar:</label>
-                      <input type="number" formControlName="cedula" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduce la cedula a depositar" required>
-                      <select *ngIf="this.AccountsListOfUser.length !== 0" type="text" name="accountto" id="accountto" formControlName="accountto" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" required>
-                        <option *ngFor="let option of AccountsListOfUser; index as i" value="{{i}}">Caja de {{option.accountType.name.toLowerCase()}}</option>
-                      </select>
-                    </div>
-                    <div class="flex flex-col my-4" *ngIf="!this.userData.get('currentAccount')">
                       <label for="accounts" class="text-gray-700">Desde:</label>
                       <select type="text" name="accounts" id="accounts" formControlName="accounts" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" required>
                         <option *ngFor="let option of UserAccountsList; index as i" value="{{i}}">Caja de {{option.accountType.name.toLowerCase()}}</option>
                       </select>
                     </div>
+                    <div class="flex flex-col my-4" *ngIf="!this.userData.get('currentAccount')">
+                      <label for="accountto" class="text-gray-700">Documento de la persona a transferir:</label>
+                      <input type="number" formControlName="documento" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduce el documento de la persona a depositar" required>
+                      <select *ngIf="this.AccountsListOfUser.length !== 0" type="text" name="accountto" id="accountto" formControlName="accountto" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" required>
+                        <option *ngFor="let option of AccountsListOfUser; index as i" value="{{i}}">Caja de {{option.accountType.name.toLowerCase()}}</option>
+                      </select>
+                    </div>
                     <div class="flex flex-col my-4">
-                        <label for="monto" class="text-gray-700">Monto a depositar:</label>
-                        <input type="number" name="monto" id="monto" formControlName="monto" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduce el monto para depositar" required>
+                        <label for="monto" class="text-gray-700">Monto:</label>
+                        <input type="number" name="monto" id="monto" formControlName="monto" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduce el monto para transferir" required>
                     </div>
                     <div class="flex flex-col my-4">
                       <label for="reason" class="text-gray-700">Tipo de transferencia:</label>
