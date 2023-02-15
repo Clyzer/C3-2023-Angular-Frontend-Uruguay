@@ -14,7 +14,7 @@ export class CurrencyComponent {
   real: number = 0;
   punds: number = 0;
 
-  banktax: number = 94.1;
+  banktax: number = 5.9;
 
   constructor(){
     this.currencyNow();
