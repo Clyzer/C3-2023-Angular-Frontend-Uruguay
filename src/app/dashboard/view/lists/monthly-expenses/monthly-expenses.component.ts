@@ -31,7 +31,9 @@ export class MonthlyExpensesComponent implements OnDestroy, OnInit {
   }
 
   ngOnDestroy(){
-    this.chart.destroy()
+    if(this.chart){
+      this.chart.destroy();
+    }
   }
 
   createChart(){
