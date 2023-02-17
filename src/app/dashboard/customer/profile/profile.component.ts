@@ -3,7 +3,7 @@ import { FormControl, Validators, FormBuilder } from '@angular/forms';
 import { DocumentTypeListModel } from 'src/app/interfaces/document.list.interface';
 import { ErrorTypes } from 'src/app/interfaces/error-type.interface';
 import { AuthService } from 'src/app/login/services/auth.service';
-import { AppService } from '../../../app.service';
+import { ApiService } from '../../../api.service';
 
 @Component({
   selector: 'app-profile',
@@ -30,7 +30,7 @@ export class ProfileComponent {
 
   editor = false;
 
-  constructor(private formBuilder: FormBuilder, protected auth: AuthService, private api: AppService) {}
+  constructor(private formBuilder: FormBuilder, protected auth: AuthService, private api: ApiService) {}
 
   onEdit() {
     if (this.editForm.valid && this.auth.currentUser){

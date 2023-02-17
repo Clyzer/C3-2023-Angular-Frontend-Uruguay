@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, asyncScheduler } from 'rxjs';
-import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/api.service';
 import { AccountModel } from 'src/app/interfaces/account.interface';
 import { AuthGuard } from '../../login/guards/auth.guard';
 
@@ -12,7 +12,7 @@ export class AccountsTableService implements OnDestroy {
   protected newDataAccounts: AccountModel[] = [];
   public accountsEmitter: BehaviorSubject<AccountModel[]> = new BehaviorSubject<AccountModel[]>(this.newDataAccounts);
 
-  constructor(private api: AppService, private guard: AuthGuard) { }
+  constructor(private api: ApiService, private guard: AuthGuard) { }
 
   ngOnDestroy(): void {
     this.accountsEmitter.unsubscribe();

@@ -14,7 +14,7 @@ import { EditAccountModel } from './interfaces/edit-account.interface';
 @Injectable({
   providedIn: 'root'
 })
-export class AppService {
+export class ApiService {
 
   baseurl = environment.apiUrl;
 

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/api.service';
 import { AccountModel } from 'src/app/interfaces/account.interface';
 import { UserDataService } from '../../services/user-data.service';
 import { DepositService } from '../deposit/deposit.service';
@@ -33,7 +33,7 @@ export class TransferComponent {
     reason: new FormControl("0")
   });
 
-  constructor(private api: AppService, private formBuilder: FormBuilder, protected userData: UserDataService, private depositService: DepositService, private reasonType: ReasonTypes) {}
+  constructor(private api: ApiService, private formBuilder: FormBuilder, protected userData: UserDataService, private depositService: DepositService, private reasonType: ReasonTypes) {}
 
   ngOnInit(): void {
 

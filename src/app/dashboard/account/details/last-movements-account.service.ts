@@ -1,6 +1,6 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, asyncScheduler } from 'rxjs';
-import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/api.service';
 import { AuthGuard } from 'src/app/login/guards/auth.guard';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
 import { AccountModel } from 'src/app/interfaces/account.interface';
@@ -28,7 +28,7 @@ export class LastMovementsAccountService implements OnDestroy {
   protected lastMovementsDeposits: DepositListModel[] = [];
   public lastMovementsDepositsEmitter: BehaviorSubject<DepositListModel[]> = new BehaviorSubject<DepositListModel[]>(this.lastMovementsDeposits);
 
-  constructor(private api: AppService, protected auth: AuthService, protected userData: UserDataService, private guard: AuthGuard) {
+  constructor(private api: ApiService, protected auth: AuthService, protected userData: UserDataService, private guard: AuthGuard) {
     this.updateLastTransferAccountTable();
     this.updateLastDepositsAccountTable();
     this.updateMovements();

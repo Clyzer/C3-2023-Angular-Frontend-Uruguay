@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ErrorTypes } from 'src/app/interfaces/error-type.interface';
 import { AccountModel } from '../../../interfaces/account.interface';
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
-import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/api.service';
 import { UserDataService } from '../../services/user-data.service';
 import { AccountTypeListModel } from 'src/app/interfaces/account.list.interface';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
@@ -32,7 +32,7 @@ export class DetailsComponent implements OnInit {
     monto: new FormControl(0, Validators.required)
   });
 
-  constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private api: AppService, protected lastMovementsAccountService: LastMovementsAccountService){}
+  constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private api: ApiService, protected lastMovementsAccountService: LastMovementsAccountService){}
 
   ngOnInit(){
     this.accountTypes.push({value: "0", name: "Ahorro"});

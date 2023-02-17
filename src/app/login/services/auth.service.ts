@@ -1,6 +1,6 @@
 import { HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/api.service';
 import { Observable, Subject } from 'rxjs';
 import { JwtTokenModel } from 'src/app/interfaces/token.interface';
 import { LoginResponseModel } from 'src/app/interfaces/login.response.interface';
@@ -17,7 +17,7 @@ export class AuthService {
   currentUser: LoginResponseModel | undefined;
   currentUserEmitter: Subject<LoginResponseModel> = new Subject<LoginResponseModel>();
 
-  constructor(private api: AppService, private userData: UserDataService, private gauth: Auth) {
+  constructor(private api: ApiService, private userData: UserDataService, private gauth: Auth) {
     this.currentUserEmitter.subscribe((value) => this.currentUser = value);
     this.loadCurrentUser();
   }

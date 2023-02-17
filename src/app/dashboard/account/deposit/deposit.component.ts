@@ -4,7 +4,7 @@ import { AccountModel } from 'src/app/interfaces/account.interface';
 import { ErrorTypes } from 'src/app/interfaces/error-type.interface';
 import { InfoTypes } from 'src/app/interfaces/info-type.interface';
 import { DepositService } from './deposit.service';
-import { AppService } from 'src/app/app.service';
+import { ApiService } from 'src/app/api.service';
 import { UserDataService } from '../../services/user-data.service';
 
 @Component({
@@ -25,7 +25,7 @@ export class DepositComponent implements OnInit {
     monto: new FormControl("")
   });
 
-  constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private depositService: DepositService, private api: AppService) {}
+  constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private depositService: DepositService, private api: ApiService) {}
 
   ngOnInit(): void {
     this.depositService.userAccountsEmitter.subscribe((data: AccountModel[]) => { if (JSON.stringify(this.UserAccountsList) !== JSON.stringify(data)) this.UserAccountsList = data });
