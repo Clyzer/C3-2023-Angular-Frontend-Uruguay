@@ -1,10 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LastMovementsCustomerService } from './last-movements-customer.service';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
-import { BehaviorSubject, asyncScheduler } from 'rxjs';
-import { AuthGuard } from 'src/app/login/guards/auth.guard';
-import { TransferListModel } from 'src/app/interfaces/transfer.list.interface';
-import { DepositListModel } from 'src/app/interfaces/deposit.list.interface';
 
 @Component({
   selector: 'app-last-movements-customer',

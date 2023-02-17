@@ -48,6 +48,11 @@
               </select>
             </div>
 
+            <div class="flex flex-col my-4">
+              <label for="monto" class="text-gray-700">Monto:</label>
+              <input type="number" name="monto" id="monto" formControlName="monto" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduzca el monto" required>
+            </div>
+
             <div class="my-4 flex items-center justify-center space-x-4">
                 <button type="submit" class="bg-blue-600 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Guardar</button>
             </div>
@@ -71,7 +76,7 @@
           <thead class="bg-gray-800">
             <tr class="text-white text-left">
               <th class="py-3">Tipo de movimiento</th>
-              <th class="py-3">Hacia</th>
+              <th class="py-3">Origen / Destino</th>
               <th class="py-3">Balance</th>
             </tr>
           </thead>

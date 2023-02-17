@@ -5,9 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { UserDataService } from '../../services/user-data.service';
 import { AccountTypeListModel } from 'src/app/interfaces/account.list.interface';
-import { Router } from '@angular/router';
 import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
-import { LastMovementsCustomerService } from '../../view/lists/last-movements-customer/last-movements-customer.service';
 import { LastMovementsAccountService } from './last-movements-account.service';
 
 @Component({
@@ -30,7 +28,8 @@ export class DetailsComponent implements OnInit {
   accountTypeCurrent: string = "Ahorro";
 
   editAccountForm = this.formBuilder.group({
-    accountType: 0
+    accountType: 0,
+    monto: 0
   });
 
   constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private api: AppService, protected lastMovementsAccountService: LastMovementsAccountService){}
@@ -54,10 +53,11 @@ export class DetailsComponent implements OnInit {
     this.api.getAccountById(this.currentId).subscribe({
       next: (data) => { this.currentAccount = data; },
       complete: () => {
-        let current = this.currentAccount?.accountType.name;
-        let finded = this.accountTypes.find((value) => value.name === current);
+        let current = this.currentAccount;
+        let finded = this.accountTypes.find((value) => value.name === current?.accountType.name);
         if (current && finded){
-          this.editAccountForm.controls.accountType.setValue(+finded.value)
+          this.editAccountForm.controls.accountType.setValue(+finded.value);
+          this.editAccountForm.controls.monto.setValue(current.balance);
         }
       }
     });
@@ -69,7 +69,7 @@ export class DetailsComponent implements OnInit {
       AccountId: this.currentAccount.id,
       customerId: this.currentAccount.customer.id,
       accountTypeName: this.accountTypes[this.editAccountForm.controls.accountType.value || 0].name,
-      balance: this.currentAccount.balance
+      balance: this.editAccountForm.controls.monto.value || 0
     }).subscribe({
       error: () => { this.catchError(ErrorTypes.alredyexist) },
       complete: () => {
