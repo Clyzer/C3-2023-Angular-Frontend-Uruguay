@@ -62,8 +62,8 @@ export class SignupComponent {
     } else this.catchError(ErrorTypes.invalid)
   }
 
-  redirect(url: string) {
-    this.router.navigate(["/" + url]);
+  redirect() {
+    this.router.navigate(["/login/sign-in"]);
   }
 
   catchError(error: ErrorTypes){

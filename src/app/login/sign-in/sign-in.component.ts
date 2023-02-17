@@ -62,8 +62,8 @@ export class SigninComponent {
       .catch(error => console.log(error))
   }
 
-  redirect(url: string) {
-    this.router.navigate(["/" + url]);
+  redirect() {
+    this.router.navigate(["/login/sign-up"]);
   }
 
   switchPassword(){

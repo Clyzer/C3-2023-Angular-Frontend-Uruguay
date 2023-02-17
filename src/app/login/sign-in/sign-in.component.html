@@ -4,7 +4,7 @@
       <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 py-8 rounded-lg">
 
           <h2 class="text-center text-2xl font-bold tracking-wide text-gray-800">Iniciar sesión</h2>
-          <p class="text-center text-sm text-gray-600 mt-2">¿No tienes una cuenta? <a (click)="redirect('login/sign-up')" class="text-blue-600 hover:text-blue-700 hover:underline">Registrate</a></p>
+          <p class="text-center text-sm text-gray-600 mt-2">¿No tienes una cuenta? <a (click)="redirect()" class="text-blue-600 hover:text-blue-700 hover:underline">Registrate</a></p>
 
           <form class="my-8 text-sm" [formGroup]="signinForm" (ngSubmit)="onSubmit()">
 
