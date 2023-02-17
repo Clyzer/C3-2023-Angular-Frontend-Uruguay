@@ -30,18 +30,18 @@ export class SignupComponent {
     phone: new FormControl("", Validators.required),
     accountType: new FormControl(0, Validators.required),
     password: new FormControl("", Validators.required),
-    password_confirmation: new FormControl("", Validators.required),
     read: new FormControl(false, Validators.required)
   });
 
   constructor(private formBuilder: FormBuilder, private router: Router, private auth: AuthService) {}
 
   onSubmit(): void {
+    console.log(this.signupForm.valid)
     if (this.signupForm.valid && this.signupForm.controls.read.value === true){
       let answer: LoginResponseModel;
       this.auth.signUp({
-        documentTypeName: this.documentTypes[this.signupForm.controls.documentType.value || 0].name,
-        accountTypeName: this.accountTypes[this.signupForm.controls.accountType.value || 0].name,
+        documentTypeName: this.documentTypes[this.signupForm.controls.documentType.value!].name,
+        accountTypeName: this.accountTypes[this.signupForm.controls.accountType.value!].name,
         balance: 0,
         document: this.signupForm.controls.document.value!,
         fullName: this.signupForm.controls.name.value!,
