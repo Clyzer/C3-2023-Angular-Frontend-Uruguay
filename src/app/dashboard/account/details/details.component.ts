@@ -5,6 +5,7 @@ import { FormBuilder } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { UserDataService } from '../../services/user-data.service';
 import { AccountTypeListModel } from 'src/app/interfaces/account.list.interface';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-details',
@@ -27,7 +28,7 @@ export class DetailsComponent implements OnInit {
     accountType: 0
   });
 
-  constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private api: AppService){}
+  constructor(private formBuilder: FormBuilder, private router: Router, protected userData: UserDataService, private api: AppService){}
 
   ngOnInit(){
     this.accountTypes.push({value: "0", name: "Ahorro"});

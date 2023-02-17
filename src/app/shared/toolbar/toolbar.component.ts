@@ -36,4 +36,9 @@ export class ToolbarComponent {
     this.mobileMenu = !this.mobileMenu;
   }
 
+  toDeposits() {
+    this.userData.delete('currentAccount');
+    this.userData.delete('currentColor');
+  }
+
 }

@@ -31,7 +31,7 @@ export class ProfileComponent {
 
   editor = false;
 
-  constructor(private formBuilder: FormBuilder, private router: Router, protected auth: AuthService, private api: AppService) {}
+  constructor(private formBuilder: FormBuilder, protected auth: AuthService, private api: AppService) {}
 
   onEdit() {
     if (this.editForm.valid){
@@ -53,10 +53,6 @@ export class ProfileComponent {
         }
       })
     } else this.catchError(ErrorTypes.invalid)
-  }
-
-  redirect(url: string) {
-    this.router.navigate(["/" + url]);
   }
 
   catchError(error: ErrorTypes){
