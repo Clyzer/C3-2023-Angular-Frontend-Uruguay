@@ -7,19 +7,19 @@
             <img alt="profile" class="shadow-xl rounded-full h-auto align-middle border-none" style="width: 150px;" src="{{this.auth.currentUser?.customer?.avatarUrl || '/assets/avatar/default-avatar.jpg'}}">
           </div>
         </div>
-        <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-          <div class="py-6 px-3 mt-32 sm:mt-0">
+        <div class="w-full lg:w-4/12 px-4 lg:order-3 text-center lg:text-right self-center">
+          <div class="py-6 px-3 lg:mt-32 mt-0">
             <button (click)="this.toEdit()" class="bg-blue-500 hover:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
               Editar
             </button>
           </div>
         </div>
-        <div class="w-full lg:w-4/12 px-4 lg:order-1">
-          <div class="flex justify-center py-4 lg:pt-4 pt-8">
+        <div class="w-full sm:w-0 lg:w-4/12 px-4 lg:order-1">
+          <div class="flex justify-center lg:py-4 lg:pt-8">
           </div>
         </div>
       </div>
-      <div *ngIf="!this.editor" class="text-center mt-12">
+      <div *ngIf="!this.editor" class="text-center lg:mt-12 sm:mt-0">
         <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
           {{this.auth.currentUser?.customer?.fullName}}
         </h3>
@@ -38,8 +38,8 @@
         </div>
       </div>
       <div *ngIf="this.editor" class="text-center mt-12">
-        <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 rounded-lg">
-          <form [formGroup]="editForm" (ngSubmit)="onEdit()" class="my-8 text-sm w-96">
+        <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto lg:px-16 content-center justify-center rounded-lg">
+          <form [formGroup]="editForm" (ngSubmit)="onEdit()" class="my-8 text-sm lg:w-96">
 
             <div *ngIf="this.error.state" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
               <span class="font-medium">Error:</span> {{error.description}}

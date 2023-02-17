@@ -6,6 +6,9 @@ import { AppService } from 'src/app/app.service';
 import { UserDataService } from '../../services/user-data.service';
 import { AccountTypeListModel } from 'src/app/interfaces/account.list.interface';
 import { Router } from '@angular/router';
+import { LastMovementsModel } from 'src/app/interfaces/last-movements.interface';
+import { LastMovementsCustomerService } from '../../view/lists/last-movements-customer/last-movements-customer.service';
+import { LastMovementsAccountService } from './last-movements-account.service';
 
 @Component({
   selector: 'app-details',
@@ -21,6 +24,8 @@ export class DetailsComponent implements OnInit {
   currentColor: string = "";
   currentId: string = "";
 
+  protected lastMovementsFinal: LastMovementsModel[] = [];
+
   accountTypes: AccountTypeListModel[] = [];
   accountTypeCurrent: string = "Ahorro";
 
@@ -28,7 +33,7 @@ export class DetailsComponent implements OnInit {
     accountType: 0
   });
 
-  constructor(private formBuilder: FormBuilder, private router: Router, protected userData: UserDataService, private api: AppService){}
+  constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private api: AppService, protected lastMovementsAccountService: LastMovementsAccountService){}
 
   ngOnInit(){
     this.accountTypes.push({value: "0", name: "Ahorro"});
@@ -36,6 +41,13 @@ export class DetailsComponent implements OnInit {
     this.currentId = this.userData.get('currentAccount');
     this.currentColor = this.userData.get('currentColor');
     this.loadAccount();
+    this.lastMovementsAccountService.lastMovementsFinalEmitter.subscribe({
+      next: (data: LastMovementsModel[]) => {
+        if (JSON.stringify(this.lastMovementsFinal) !== JSON.stringify(data.slice(0,8))) {
+          this.lastMovementsFinal = data.slice(0,8);;
+        }
+      }
+    })
   }
 
   loadAccount(){

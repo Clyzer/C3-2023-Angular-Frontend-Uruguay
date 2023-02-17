@@ -20,22 +20,22 @@
             </div>
           </div>
         </div>
-        <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-          <div class="py-6 px-3 mt-32 sm:mt-0">
+        <div class="w-full lg:w-4/12 px-4 lg:order-3 text-center lg:text-right self-center">
+          <div class="py-6 px-3 lg:mt-32 mt-0">
             <button (click)="this.toEdit()" class="custhover2-{{this.currentColor}} text-slate-600 uppercase font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
               Editar
             </button>
           </div>
         </div>
-        <div class="w-full lg:w-4/12 px-4 lg:order-1">
-          <div class="flex justify-center py-4 lg:pt-4 pt-8">
+        <div class="w-full sm:w-0 lg:w-4/12 px-4 lg:order-1">
+          <div class="flex justify-center lg:py-4 lg:pt-8">
           </div>
         </div>
       </div>
-      <div *ngIf="!this.editor" class="text-center mt-12"></div>
+      <div *ngIf="!this.editor" class="text-center lg:mt-12 sm:mt-0"></div>
       <div *ngIf="this.editor" class="text-center mt-12">
-        <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 rounded-lg">
-          <form [formGroup]="editAccountForm" (ngSubmit)="onEditAccount()" class="my-8 text-sm w-96">
+        <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto lg:px-16 content-center justify-center rounded-lg">
+          <form [formGroup]="editAccountForm" (ngSubmit)="onEditAccount()" class="my-8 text-sm lg:w-96">
 
             <div *ngIf="this.error.state" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
               <span class="font-medium">Error:</span> {{error.description}}
@@ -53,6 +53,36 @@
             </div>
           </form>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="!this.editor" class="container mx-auto px-4 justify-center content-center">
+  <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-10">
+    <div class="px-6">
+      <div class="flex flex-wrap justify-center mt-10">
+        <div class="w-full px-4 flex justify-center">
+          <div class="text-2xl font-medium text-gray-900">Historial de transacciones:</div>
+        </div>
+      </div>
+      <div class="mt-12">
+        <table class="table-auto border border-collapse rounded-lg w-full mx-auto">
+          <caption></caption>
+          <thead class="bg-gray-800">
+            <tr class="text-white text-left">
+              <th class="py-3">Tipo de movimiento</th>
+              <th class="py-3">Hacia</th>
+              <th class="py-3">Balance</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let movement of lastMovementsFinal; index as i" class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
+              <td class="py-3">{{movement.type}}</td>
+              <td class="py-3">{{movement.outcome.customer.fullName}}</td>
+              <td class="py-3">${{movement.balance}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
