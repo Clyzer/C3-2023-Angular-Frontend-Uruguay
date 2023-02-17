@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy, OnInit } from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { BehaviorSubject, asyncScheduler } from 'rxjs';
 import { AppService } from 'src/app/app.service';
 import { AuthService } from '../../../../login/services/auth.service';
@@ -47,27 +47,31 @@ export class LastMovementsCustomerService implements OnDestroy {
           }
         },
         complete: () => {
-          let current: TransferListModel[] = [];
-          this.customerAccountsTransfer.forEach((value, index) => {
-            this.api.getTransfersHistory(value.id).subscribe({
-              next: (data) => {
-                current.push({ account: value, transfers: data });
-              },
-              complete: () => {
-                if(index + 1 === this.customerAccountsTransfer.length){
-                  if(JSON.stringify(this.lastMovementsTransfers) !== JSON.stringify(current)){
-                    this.lastMovementsTransfers = current;
-                    this.lastMovementsTransfersEmitter.next(this.lastMovementsTransfers);
-                    this.update = true;
-                  }
-                  asyncScheduler.schedule(this.updateLastTransferCustomerTable, 1000);
-                }
-              }
-            })
-          })
+          this.updateLastTransferDo();
         }
       })
     } else asyncScheduler.schedule(this.updateLastTransferCustomerTable, 100);
+  }
+
+  private updateLastTransferDo(): void {
+    let current: TransferListModel[] = [];
+    this.customerAccountsTransfer.forEach((value, index) => {
+      this.api.getTransfersHistory(value.id).subscribe({
+        next: (data) => {
+          current.push({ account: value, transfers: data });
+        },
+        complete: () => {
+          if(index + 1 === this.customerAccountsTransfer.length){
+            if(JSON.stringify(this.lastMovementsTransfers) !== JSON.stringify(current)){
+              this.lastMovementsTransfers = current;
+              this.lastMovementsTransfersEmitter.next(this.lastMovementsTransfers);
+              this.update = true;
+            }
+            asyncScheduler.schedule(this.updateLastTransferCustomerTable, 1000);
+          }
+        }
+      })
+    })
   }
 
   private updateLastDepositsCustomerTable = () => {
@@ -79,27 +83,31 @@ export class LastMovementsCustomerService implements OnDestroy {
           }
         },
         complete: () => {
-          let current: DepositListModel[] = [];
-          this.customerAccountsDeposits.forEach((value, index) => {
-            this.api.getDepositsHistory(value.id).subscribe({
-              next: (data) => {
-                current.push({ account: value, deposits: data });
-              },
-              complete: () => {
-                if(index + 1 === this.customerAccountsDeposits.length){
-                  if(JSON.stringify(this.lastMovementsDeposits) !== JSON.stringify(current)){
-                    this.lastMovementsDeposits = current;
-                    this.lastMovementsDepositsEmitter.next(this.lastMovementsDeposits);
-                    this.update = true;
-                  }
-                  asyncScheduler.schedule(this.updateLastDepositsCustomerTable, 1000);
-                }
-              }
-            })
-          })
+          this.updateLastDepositsDo();
         }
       })
     } else asyncScheduler.schedule(this.updateLastDepositsCustomerTable, 100);
+  }
+
+  private updateLastDepositsDo(): void {
+    let current: DepositListModel[] = [];
+    this.customerAccountsDeposits.forEach((value, index) => {
+      this.api.getDepositsHistory(value.id).subscribe({
+        next: (data) => {
+          current.push({ account: value, deposits: data });
+        },
+        complete: () => {
+          if(index + 1 === this.customerAccountsDeposits.length){
+            if(JSON.stringify(this.lastMovementsDeposits) !== JSON.stringify(current)){
+              this.lastMovementsDeposits = current;
+              this.lastMovementsDepositsEmitter.next(this.lastMovementsDeposits);
+              this.update = true;
+            }
+            asyncScheduler.schedule(this.updateLastDepositsCustomerTable, 1000);
+          }
+        }
+      })
+    })
   }
 
   private updateMovements = () => {
@@ -112,7 +120,7 @@ export class LastMovementsCustomerService implements OnDestroy {
   }
 
   orderMovementsLists(): void {
-    if (this.update){
+    if (this.update && this.auth.currentUser?.customer.id){
       this.update = false;
       this.lastMovements = [];
       this.lastMovementsTransfers.forEach( (value)  => {

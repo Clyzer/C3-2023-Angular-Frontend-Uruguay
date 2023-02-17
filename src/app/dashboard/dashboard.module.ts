@@ -11,6 +11,7 @@ import { ProfileComponent } from './customer/profile/profile.component';
 import { DashboardRoutingModule } from './dashboard-routing.module';
 import { RouterModule } from '@angular/router';
 import { LastMovementsCustomerService } from './view/lists/last-movements-customer/last-movements-customer.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [
@@ -37,6 +38,8 @@ import { LastMovementsCustomerService } from './view/lists/last-movements-custom
         SharedModule,
         AccountModule,
         RouterModule,
+        FormsModule,
+        ReactiveFormsModule,
         DashboardRoutingModule
     ]
 })

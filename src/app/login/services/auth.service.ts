@@ -84,4 +84,13 @@ export class AuthService {
       });
     }
   }
+
+  reloadCurrentUser(): void {
+    let user: CustomerModel;
+    const token: string = this.userData.get('token');
+    this.api.getCustomerById(this.currentUser!.customer.id).subscribe({
+      next: (data) => { user = data; },
+      complete: () => { this.currentUserEmitter.next({ customer: user, token: token }); }
+    });
+  }
 }

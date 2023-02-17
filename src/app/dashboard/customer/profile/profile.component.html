@@ -1,4 +1,4 @@
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 justify-center content-center">
   <div class="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-xl rounded-lg mt-10">
     <div class="px-6">
       <div class="flex flex-wrap justify-center mt-10">
@@ -8,18 +8,18 @@
           </div>
         </div>
         <div class="w-full lg:w-4/12 px-4 lg:order-3 lg:text-right lg:self-center">
-<!--           <div class="py-6 px-3 mt-32 sm:mt-0">
-            <button class="bg-blue-500 hover:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
+          <div class="py-6 px-3 mt-32 sm:mt-0">
+            <button (click)="this.toEdit()" class="bg-blue-500 hover:bg-blue-600 uppercase text-white font-bold hover:shadow-md shadow text-xs px-4 py-2 rounded outline-none focus:outline-none sm:mr-2 mb-1 ease-linear transition-all duration-150" type="button">
               Editar
             </button>
-          </div> -->
+          </div>
         </div>
         <div class="w-full lg:w-4/12 px-4 lg:order-1">
           <div class="flex justify-center py-4 lg:pt-4 pt-8">
           </div>
         </div>
       </div>
-      <div class="text-center mt-12">
+      <div *ngIf="!this.editor" class="text-center mt-12">
         <h3 class="text-4xl font-semibold leading-normal mb-2 text-blueGray-700">
           {{this.auth.currentUser?.customer?.fullName}}
         </h3>
@@ -35,6 +35,63 @@
         </div>
         <div class="mb-10 text-blueGray-600">
           Telefono/Celular: {{this.auth.currentUser?.customer?.phone}}
+        </div>
+      </div>
+      <div *ngIf="this.editor" class="text-center mt-12">
+        <div class="w-5/6 md:w-3/4 lg:w-2/3 xl:w-[500px] 2xl:w-[550px] mt-8 mx-auto px-16 rounded-lg">
+          <form [formGroup]="editForm" (ngSubmit)="onEdit()" class="my-8 text-sm w-96">
+
+            <div *ngIf="this.error.state" class="p-4 mb-4 text-sm text-red-800 rounded-lg bg-red-50" role="alert">
+              <span class="font-medium">Error:</span> {{error.description}}
+            </div>
+
+            <div class="flex flex-col my-4">
+                <label for="name" class="text-gray-700">Nombre</label>
+                <input type="text" name="name" id="name" formControlName="name" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduzca su nombre" required>
+            </div>
+
+            <div class="flex flex-col my-4">
+                <label for="email" class="text-gray-700">Correo electrónico</label>
+                <input type="email" name="email" id="email" formControlName="email" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduce tu correo electrónico" email required>
+            </div>
+
+            <div class="flex flex-col my-4">
+              <label for="documentType" class="text-gray-700">Tipo de documento:</label>
+              <select #documentsTypes type="text" name="documentType" id="documentType" formControlName="documentType" (change)="switchDocumentType(+documentsTypes.value)" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900">
+                <option *ngFor="let option of documentTypes" value="{{option.value}}">{{option.name}}</option>
+              </select>
+            </div>
+
+            <div class="flex flex-col my-4">
+              <label for="document" class="text-gray-700">Documento:</label>
+              <input type="text" name="document" id="document" formControlName="document" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduzca su {{documentTypeCurrent}}" required>
+            </div>
+
+            <div class="flex flex-col my-4">
+              <label for="phone" class="text-gray-700">Telefono/celular</label>
+              <input type="number" name="phone" id="phone" formControlName="phone" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduzca su telefono/celular" required>
+            </div>
+
+            <div class="flex flex-col my-4">
+              <label for="avatarUrl" class="text-gray-700">Avatar:</label>
+              <input type="text" name="avatarUrl" id="avatarUrl" formControlName="avatarUrl" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Introduzca una url para tu avatar" required>
+            </div>
+
+            <div class="flex flex-col my-4">
+                <label for="password" class="text-gray-700">Contraseña</label>
+                <div class="relative flex items-center mt-2">
+                    <input name="password" id="password" formControlName="password" class="flex-1 p-2 border pr-10 border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" placeholder="Ingresa tu contraseña" [type]="this.show ? 'password' : 'text'" required>
+                    <button (click)="switchPassword()" type="button" class="absolute right-2 bg-transparent flex items-center justify-center text-gray-700">
+                        <svg *ngIf="show" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.875 18.825A10.05 10.05 0 0112 19c-4.478 0-8.268-2.943-9.543-7a9.97 9.97 0 011.563-3.029m5.858.908a3 3 0 114.243 4.243M9.878 9.878l4.242 4.242M9.88 9.88l-3.29-3.29m7.532 7.532l3.29 3.29M3 3l3.59 3.59m0 0A9.953 9.953 0 0112 5c4.478 0 8.268 2.943 9.543 7a10.025 10.025 0 01-4.132 5.411m0 0L21 21"></path></svg>
+                        <svg *ngIf="!show" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"></path></svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="my-4 flex items-center justify-center space-x-4">
+                <button type="submit" class="bg-blue-600 hover:bg-blue-700 rounded-lg px-8 py-2 text-gray-100 hover:shadow-xl transition duration-150 uppercase">Guardar</button>
+            </div>
+          </form>
         </div>
       </div>
     </div>

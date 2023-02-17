@@ -5,13 +5,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountRoutingModule } from './account-routing.module';
 import { TransferComponent } from './transfer/transfer.component';
 import { ReasonTypes } from 'src/app/interfaces/reason-type.interface';
+import { EditComponent } from './edit/edit.component';
 
 
 
 @NgModule({
   declarations: [
     DepositComponent,
-    TransferComponent
+    TransferComponent,
+    EditComponent
   ],
   imports: [
     CommonModule,

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { Convert, Converter } from "easy-currencies";
+import { Converter } from "easy-currencies";
 
 @Component({
   selector: 'app-currency',

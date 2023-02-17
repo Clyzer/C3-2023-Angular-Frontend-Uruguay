@@ -8,6 +8,7 @@ import { DepositResponseModel } from './interfaces/deposit.response.interface';
 import { environment } from '../environments/environment';
 import { TransferCreateModel } from './interfaces/transfer.create.interface';
 import { TransferResponseModel } from './interfaces/transfer.response.interface';
+import { EditProfileModel } from './interfaces/edit-profile.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -117,6 +118,17 @@ export class AppService {
     };
     return this.http.post<TransferResponseModel[]>(
       this.baseurl + "/transfer/get-history", body,
+      httpOptions
+    );
+  }
+
+  editProfile(data: EditProfileModel): Observable<CustomerModel> {
+    const body = data;
+    const httpOptions = {
+      headers: this.httpheaders
+    };
+    return this.http.post<CustomerModel>(
+      this.baseurl + "/customer/update", body,
       httpOptions
     );
   }
