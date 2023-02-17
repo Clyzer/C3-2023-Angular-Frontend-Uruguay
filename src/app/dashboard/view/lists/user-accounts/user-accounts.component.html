@@ -8,7 +8,7 @@
   </thead>
   <tbody>
     <tr *ngFor="let account of UserAccountsList" class="transition duration-300 ease-in-out hover:bg-gray-100 border-hidden text-left whitespace-nowrap">
-      <td *ngIf="account && account.state" class="py-3">Caja de {{account.accountType.name.toLowerCase()}}</td>
+      <td *ngIf="account && account.state" class="py-3">Caja {{account.accountType.name.toLowerCase()}}</td>
       <td *ngIf="account && account.state" class="py-3">{{account.balance}}</td>
     </tr>
   </tbody>
@@ -16,14 +16,14 @@
  -->
 <div class="flex md:flex-row flex-wrap items-center justify-center">
   <div *ngFor="let account of UserAccountsList; index as i">
-    <button class="shadow-lg custhover-{{this.colors[i]}} mr-3 md:mr-2 rounded-2xl p-4 my-2" (click)="toDeposit(i)">
+    <button class="shadow-lg custhover-{{this.colors[i]}} mr-3 md:mr-2 rounded-2xl p-4 my-2" (click)="toAccountEdit(i)">
       <div class="flex items-center">
         <div class="inline-flex flex-shrink-0 justify-center items-center w-12 h-12 rounded-lg {{'gradient-' + this.colors[i]}}">
             <svg class="w-8 h-8" fill="white" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4 4a2 2 0 00-2 2v4a2 2 0 002 2V6h10a2 2 0 00-2-2H4zm2 6a2 2 0 012-2h8a2 2 0 012 2v4a2 2 0 01-2 2H8a2 2 0 01-2-2v-4zm6 4a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"></path></svg>
         </div>
         <div class="ml-3 mt-4 w-40">
           <span class="text-2xl font-bold leading-none md:text-3xl text-green-500">${{account.balance}}</span>
-          <h3 class="text-base font-normal text-gray-500">Caja de {{account.accountType.name.toLowerCase()}}</h3>
+          <h3 class="text-base font-normal text-gray-500">Caja {{account.accountType.name.toLowerCase()}}</h3>
         </div>
         <!-- <div class="flex flex-1 justify-end items-center ml-5 w-0 text-base font-bold text-blue-500">
           {{account.id}}

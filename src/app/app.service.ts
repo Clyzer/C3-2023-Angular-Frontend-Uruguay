@@ -9,6 +9,7 @@ import { environment } from '../environments/environment';
 import { TransferCreateModel } from './interfaces/transfer.create.interface';
 import { TransferResponseModel } from './interfaces/transfer.response.interface';
 import { EditProfileModel } from './interfaces/edit-profile.interface';
+import { EditAccountModel } from './interfaces/edit-account.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -41,6 +42,17 @@ export class AppService {
     };
     return this.http.get<AccountModel[]>(
       this.baseurl + "/account/get-all",
+      httpOptions
+    );
+  }
+
+  getAccountById(id: string) : Observable<AccountModel> {
+    const httpOptions = {
+      headers: this.httpheaders,
+      params: new HttpParams().set("account", id)
+    };
+    return this.http.get<AccountModel>(
+      this.baseurl + "/account/get-by-id",
       httpOptions
     );
   }
@@ -129,6 +141,17 @@ export class AppService {
     };
     return this.http.post<CustomerModel>(
       this.baseurl + "/customer/update", body,
+      httpOptions
+    );
+  }
+
+  editAccount(data: EditAccountModel): Observable<AccountModel> {
+    const body = data;
+    const httpOptions = {
+      headers: this.httpheaders
+    };
+    return this.http.post<AccountModel>(
+      this.baseurl + "/account/update", body,
       httpOptions
     );
   }

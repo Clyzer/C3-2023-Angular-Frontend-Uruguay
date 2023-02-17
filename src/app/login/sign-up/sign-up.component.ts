@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { LoginResponseModel } from 'src/app/interfaces/login.response.interface';
 import { ErrorTypes } from 'src/app/interfaces/error-type.interface';
+import { AccountTypeListModel } from 'src/app/interfaces/account.list.interface';
 
 @Component({
   selector: 'app-sign-up',
@@ -18,12 +19,16 @@ export class SignupComponent {
   documentTypes: DocumentTypeListModel[] = [];
   documentTypeCurrent: string = "cedula de identidad";
 
+  accountTypes: AccountTypeListModel[] = [];
+  accountTypeCurrent: string = "Ahorro";
+
   signupForm = this.formBuilder.group({
     name: new FormControl(),
     email: new FormControl("", Validators.email),
     documentType: new FormControl(0),
     document: new FormControl(),
     phone: new FormControl(),
+    accountType: 0,
     password: new FormControl(),
     password_confirmation: new FormControl(),
     read: new FormControl(false)
@@ -36,7 +41,7 @@ export class SignupComponent {
       let answer: LoginResponseModel;
       this.auth.signUp({
         documentTypeName: this.documentTypes[this.signupForm.controls.documentType.value || 0].name,
-        accountTypeName: "Ahorro",
+        accountTypeName: this.accountTypes[this.signupForm.controls.accountType.value || 0].name,
         balance: 0,
         document: this.signupForm.controls.document.value,
         fullName: this.signupForm.controls.name.value,
@@ -70,6 +75,8 @@ export class SignupComponent {
     this.documentTypes.push({value: "0", name: "Cedula de identidad"});
     this.documentTypes.push({value: "1", name: "Pasaporte"});
     this.documentTypes.push({value: "2", name: "Libreta de conducir"});
+    this.accountTypes.push({value: "0", name: "Ahorro"});
+    this.accountTypes.push({value: "1", name: "Corriente"});
   }
 
   switchPassword(){
@@ -78,6 +85,10 @@ export class SignupComponent {
 
   switchDocumentType(value: number){
     this.documentTypeCurrent = this.documentTypes[value].name.toLowerCase();
+  }
+
+  switchAccountType(value: number){
+    this.accountTypeCurrent = this.accountTypes[value].name.toLowerCase();
   }
 
 }

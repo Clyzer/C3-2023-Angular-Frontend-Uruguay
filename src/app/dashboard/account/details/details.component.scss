@@ -1,0 +1,225 @@
+.gradient-red{
+  //background: rgb(239, 68, 68);
+  //background: -webkit-linear-gradient(135deg, rgba(239, 68, 68, 1), rgba(254, 202, 202, 1));
+  background: linear-gradient(135deg, rgba(239, 68, 68, 1), rgba(254, 202, 202, 1));
+}
+.gradient-blue{
+  //background: rgb(59, 130, 246);
+  //background: -webkit-linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(191, 219, 254, 1));
+  background: linear-gradient(135deg, rgba(59, 130, 246, 1), rgba(191, 219, 254, 1));
+}
+.gradient-emerald{
+  //background: rgb(16, 185, 129);
+  //background: -webkit-linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(167, 243, 208, 1));
+  background: linear-gradient(135deg, rgba(16, 185, 129, 1), rgba(167, 243, 208, 1));
+}
+.gradient-yellow{
+  //background: rgb(234, 179, 8);
+  //background: -webkit-linear-gradient(135deg, rgba(234, 179, 8, 1), rgba(254, 240, 138, 1));
+  background: linear-gradient(135deg, rgba(234, 179, 8, 1), rgba(254, 240, 138, 1));
+}
+.gradient-lime{
+  //background: rgb(132, 204, 22);
+  //background: -webkit-linear-gradient(135deg, rgba(132, 204, 22, 1), rgba(217, 249, 157, 1));
+  background: linear-gradient(135deg, rgba(132, 204, 22, 1), rgba(217, 249, 157, 1));
+}
+.gradient-green{
+  //background: rgb(34, 197, 94);
+  //background: -webkit-linear-gradient(135deg, rgba(34, 197, 94, 1), rgba(187, 247, 208, 1));
+  background: linear-gradient(135deg, rgba(34, 197, 94, 1), rgba(187, 247, 208, 1));
+}
+.gradient-violet{
+  //background: rgb(139, 92, 246);
+  //background: -webkit-linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(221, 214, 254, 1));
+  background: linear-gradient(135deg, rgba(139, 92, 246, 1), rgba(221, 214, 254, 1));
+}
+.gradient-purple{
+  //background: rgb(168, 85, 247);
+  //background: -webkit-linear-gradient(135deg, rgba(168, 85, 247, 1), rgba(233, 213, 255, 1));
+  background: linear-gradient(135deg, rgba(168, 85, 247, 1), rgba(233, 213, 255, 1));
+}
+.gradient-rose{
+  //background: rgb(244, 63, 94);
+  //background: -webkit-linear-gradient(135deg, rgba(244, 63, 94, 1), rgba(254, 205, 211, 1));
+  background: linear-gradient(135deg, rgba(244, 63, 94, 1), rgba(254, 205, 211, 1));
+}
+
+.custhover-red {
+  background-color: rgba(244, 63, 94, 0.1);
+  outline: rgb(244, 63, 94);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-blue {
+  background-color: rgba(59, 130, 246, 0.1);
+  outline: rgb(59, 130, 246);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-emerald {
+  background-color: rgba(16, 185, 129, 0.1);
+  outline: rgb(16, 185, 129);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-yellow {
+  background-color: rgba(234, 179, 8, 0.1);
+  outline: rgb(234, 179, 8);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-lime {
+  background-color: rgba(132, 204, 22, 0.1);
+  outline: rgb(132, 204, 22);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-green {
+  background-color: rgba(34, 197, 94, 0.1);
+  outline: rgb(34, 197, 94);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-violet {
+  background-color: rgba(139, 92, 246, 0.1);
+  outline: rgb(139, 92, 246);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-purple {
+  background-color: rgba(168, 85, 247, 0.1);
+  outline: rgb(168, 85, 247);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover-rose {
+  background-color: rgba(244, 63, 94, 0.1);
+  outline: rgb(244, 63, 94);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-red:hover {
+  background-color: rgba(244, 63, 94, 0.1);
+  outline: rgb(244, 63, 94);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-blue:hover {
+  background-color: rgba(59, 130, 246, 0.1);
+  outline: rgb(59, 130, 246);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-emerald:hover {
+  background-color: rgba(16, 185, 129, 0.1);
+  outline: rgb(16, 185, 129);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-yellow:hover {
+  background-color: rgba(234, 179, 8, 0.1);
+  outline: rgb(234, 179, 8);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-lime:hover {
+  background-color: rgba(132, 204, 22, 0.1);
+  outline: rgb(132, 204, 22);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-green:hover {
+  background-color: rgba(34, 197, 94, 0.1);
+  outline: rgb(34, 197, 94);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-violet:hover {
+  background-color: rgba(139, 92, 246, 0.1);
+  outline: rgb(139, 92, 246);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-purple:hover {
+  background-color: rgba(168, 85, 247, 0.1);
+  outline: rgb(168, 85, 247);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-rose:hover {
+  background-color: rgba(244, 63, 94, 0.1);
+  outline: rgb(244, 63, 94);
+  outline-offset: 2;
+  outline-width: 2;
+  outline-style: solid;
+}
+
+.custhover2-red {
+  background-color: rgba(244, 63, 94, 0.1);
+}
+
+.custhover2-blue {
+  background-color: rgba(59, 130, 246, 0.1);
+}
+
+.custhover2-emerald {
+  background-color: rgba(16, 185, 129, 0.1);
+}
+
+.custhover2-yellow {
+  background-color: rgba(234, 179, 8, 0.1);
+}
+
+.custhover2-lime {
+  background-color: rgba(132, 204, 22, 0.1);
+}
+
+.custhover2-green {
+  background-color: rgba(34, 197, 94, 0.1);
+}
+
+.custhover2-violet {
+  background-color: rgba(139, 92, 246, 0.1);
+}
+
+.custhover2-purple {
+  background-color: rgba(168, 85, 247, 0.1);
+}
+
+.custhover2-rose {
+  background-color: rgba(244, 63, 94, 0.1);
+}

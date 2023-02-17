@@ -12,6 +12,7 @@ export class ViewComponent implements OnInit {
 
   ngOnInit(): void {
     this.userData.delete('currentAccount');
+    this.userData.delete('currentColor');
   }
 
 }

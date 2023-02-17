@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountRoutingModule } from './account-routing.module';
 import { TransferComponent } from './transfer/transfer.component';
 import { ReasonTypes } from 'src/app/interfaces/reason-type.interface';
-import { EditComponent } from './edit/edit.component';
+import { DetailsComponent } from './details/details.component';
 
 
 
@@ -13,7 +13,7 @@ import { EditComponent } from './edit/edit.component';
   declarations: [
     DepositComponent,
     TransferComponent,
-    EditComponent
+    DetailsComponent
   ],
   imports: [
     CommonModule,
@@ -23,6 +23,11 @@ import { EditComponent } from './edit/edit.component';
   ],
   providers: [
     ReasonTypes
+  ],
+  exports: [
+    DepositComponent,
+    TransferComponent,
+    DetailsComponent
   ]
 })
 export class AccountModule { }

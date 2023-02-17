@@ -14,7 +14,7 @@
                     <div class="flex flex-col my-4" *ngIf="!this.userData.get('currentAccount')">
                       <label for="account" class="text-gray-700">Cuenta:</label>
                       <select type="text" name="account" id="account" formControlName="account" class="mt-2 p-2 border border-gray-300 focus:outline-none focus:ring-0 focus:border-gray-300 rounded text-sm text-gray-900" required>
-                        <option *ngFor="let option of UserAccountsList; index as i" value="{{i}}">Caja de {{option.accountType.name.toLowerCase()}}</option>
+                        <option *ngFor="let option of UserAccountsList; index as i" value="{{i}}">Caja {{option.accountType.name.toLowerCase()}}</option>
                       </select>
                     </div>
                     <div class="flex flex-col my-4">

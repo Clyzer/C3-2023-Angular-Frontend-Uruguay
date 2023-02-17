@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
 import { AccountModel } from 'src/app/interfaces/account.interface';
 import { ErrorTypes } from 'src/app/interfaces/error-type.interface';
+import { InfoTypes } from 'src/app/interfaces/info-type.interface';
 import { DepositService } from './deposit.service';
 import { AppService } from 'src/app/app.service';
-import { InfoTypes } from 'src/app/interfaces/info-type.interface';
 import { UserDataService } from '../../services/user-data.service';
 
 @Component({

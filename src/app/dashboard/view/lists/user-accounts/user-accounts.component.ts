@@ -24,9 +24,10 @@ export class UserAccountsComponent implements OnInit {
     this.userAccountsService.updateUserAccountsTable();
   }
 
-  toDeposit(i: number): void {
+  toAccountEdit(i: number): void {
+    this.userData.set('currentColor', this.colors[i]);
     this.userData.set('currentAccount', this.UserAccountsList[i].id);
-    this.router.navigate(['/accounts/deposits']);
+    this.router.navigate(['/accounts/account']);
   }
 
 }
