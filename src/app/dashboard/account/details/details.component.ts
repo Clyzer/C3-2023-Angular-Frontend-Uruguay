@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ErrorTypes } from 'src/app/interfaces/error-type.interface';
 import { AccountModel } from '../../../interfaces/account.interface';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { AppService } from 'src/app/app.service';
 import { UserDataService } from '../../services/user-data.service';
 import { AccountTypeListModel } from 'src/app/interfaces/account.list.interface';
@@ -28,8 +28,8 @@ export class DetailsComponent implements OnInit {
   accountTypeCurrent: string = "Ahorro";
 
   editAccountForm = this.formBuilder.group({
-    accountType: 0,
-    monto: 0
+    accountType: new FormControl(0, Validators.required),
+    monto: new FormControl(0, Validators.required)
   });
 
   constructor(private formBuilder: FormBuilder, protected userData: UserDataService, private api: AppService, protected lastMovementsAccountService: LastMovementsAccountService){}
@@ -68,8 +68,8 @@ export class DetailsComponent implements OnInit {
     this.api.editAccount({
       AccountId: this.currentAccount.id,
       customerId: this.currentAccount.customer.id,
-      accountTypeName: this.accountTypes[this.editAccountForm.controls.accountType.value || 0].name,
-      balance: this.editAccountForm.controls.monto.value || 0
+      accountTypeName: this.accountTypes[this.editAccountForm.controls.accountType.value!].name,
+      balance: this.editAccountForm.controls.monto.value!
     }).subscribe({
       error: () => { this.catchError(ErrorTypes.alredyexist) },
       complete: () => {

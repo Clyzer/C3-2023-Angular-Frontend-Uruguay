@@ -17,17 +17,17 @@ export class SigninComponent {
   error = {description: "error.description", state: false};
 
   signinForm = this.formBuilder.group({
-    email: new FormControl("", Validators.email),
-    password: new FormControl(""),
-    remember: new FormControl(false)
+    email: new FormControl("", [Validators.required, Validators.email]),
+    password: new FormControl("", Validators.required),
+    remember: new FormControl(false, Validators.required)
   });
 
   constructor(private formBuilder: FormBuilder, private userData: UserDataService, private router: Router, private auth: AuthService) {}
 
   onSubmit(): void {
-    if (this.signinForm.valid && this.signinForm.controls.email.value && this.signinForm.controls.password.value){
+    if (this.signinForm.valid){
       let answer: LoginResponseModel;
-      this.auth.login(this.signinForm.controls.email.value, this.signinForm.controls.password.value).subscribe({
+      this.auth.login(this.signinForm.controls.email.value!, this.signinForm.controls.password.value!).subscribe({
         next: (value) => { answer = value; },
         error: () => { this.catchError(ErrorTypes.notfound) },
         complete: () => {

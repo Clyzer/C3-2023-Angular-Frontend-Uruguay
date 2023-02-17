@@ -19,13 +19,13 @@ export class ProfileComponent {
   documentTypeCurrent: string = "cedula de identidad";
 
   editForm = this.formBuilder.group({
-    name: "",
-    email: new FormControl("", Validators.email),
-    documentType: new FormControl(0),
-    document: "",
-    phone: "",
-    password: "",
-    avatarUrl: ""
+    name: new FormControl("", Validators.required),
+    email: new FormControl("", [Validators.required, Validators.email]),
+    documentType: new FormControl(0, Validators.required),
+    document: new FormControl("", Validators.required),
+    phone: new FormControl("", Validators.required),
+    password: new FormControl("", Validators.required),
+    avatarUrl: new FormControl("", Validators.required),
   });
 
   editor = false;
@@ -33,9 +33,9 @@ export class ProfileComponent {
   constructor(private formBuilder: FormBuilder, protected auth: AuthService, private api: AppService) {}
 
   onEdit() {
-    if (this.editForm.valid){
+    if (this.editForm.valid && this.auth.currentUser){
       this.api.editProfile({
-        customerId: this.auth.currentUser!.customer.id,
+        customerId: this.auth.currentUser.customer.id,
         documentTypeName: this.documentTypes[this.editForm.controls.documentType.value || 0].name,
         document: this.editForm.controls.document.value!,
         fullName: this.editForm.controls.name.value!,
